@@ -3,17 +3,23 @@ import { createSlice } from "@reduxjs/toolkit";
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    carName: '',
-    carCost: 0
+    costName: '',
+    costCost: 0
   },
   reducers: {
     changeName(state, action){
-      state.carName = action.payload
+      state.costName = action.payload
     },
     changeCost(state, action){
-      state.carCost = action.payload
+      state.costCost = action.payload
     }
-  }
+  },
+  extraReducers(builder){
+    builder.addCase("cost/addCost",(state, action) => {
+    state.costCost = 0
+    state.costName = ''
+  })
+  },
 });
 
 export const {changeName, changeCost} = formSlice.actions;
